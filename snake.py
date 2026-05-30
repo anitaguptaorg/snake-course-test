@@ -79,7 +79,19 @@ def move():
 
 def reset_game():
     global SCORE
+    
+    # Display Game Over message
+    pen_msg = turtle.Turtle()
+    pen_msg.speed(0)
+    pen_msg.color("red")
+    pen_msg.penup()
+    pen_msg.hideturtle()
+    pen_msg.goto(0, 0)
+    pen_msg.write("GAME OVER", align="center", font=("Courier", 36, "bold"))
+    
     time.sleep(1)
+    pen_msg.clear()
+    
     head.goto(0, 0)
     head.direction = "stop"
 
@@ -109,8 +121,8 @@ screen.onkeypress(go_right, "Right")
 while True:
     screen.update()
 
-    # Check for collision with border
-    if head.xcor() > 290 or head.xcor() < -290 or head.ycor() > 290 or head.ycor() < -290:
+    # Check for collision with border (matching 800x600 screen size)
+    if head.xcor() > 390 or head.xcor() < -390 or head.ycor() > 290 or head.ycor() < -290:
         reset_game()
 
     # Check for collision with food
